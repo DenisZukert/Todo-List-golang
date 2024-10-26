@@ -1,20 +1,16 @@
 package main
 
 import (
+	"Todo/internal/routers"
 	"fmt"
 	"net/http"
 )
 
-func taskHandler(res http.ResponseWriter, req *http.Request) {
-	fmt.Fprintf(res, "<h1>Hello from GO-server!</h1>")
-}
-
 func main() {
-	http.HandleFunc("/", taskHandler)
+	http.HandleFunc("/", routers.RegisterRoute)
+
 	fmt.Println("Server is running on localhost:3000")
-	err := http.ListenAndServe(":3000", nil)
-	if err != nil {
-		fmt.Println("Server start error:", err)
-		return
+	if err := http.ListenAndServe(":3000", nil); err != nil {
+		fmt.Printf("Error starting server: %s\n", err)
 	}
 }
