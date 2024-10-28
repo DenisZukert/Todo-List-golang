@@ -1,3 +1,3 @@
-module Todo-list
+module Todo
 
 go 1.23.2
